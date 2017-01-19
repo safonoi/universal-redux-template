@@ -1,0 +1,28 @@
+{
+  "env": {
+    "node": 1,
+    "browser": 1
+  },
+  "extends": "airbnb",
+  "rules": {
+    "no-console": 0,
+    "import/extensions": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".js"] }],
+    "react/prefer-stateless-function": 0,
+
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true,
+      "optionalDependencies": false,
+      "peerDependencies": false
+    }],
+    "import/no-unresolved": 0,
+
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "ignore",
+      "objects": "only-multiline"
+    }]
+  }
+}
