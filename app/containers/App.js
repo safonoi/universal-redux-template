@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Helmet from 'react-helmet';
 
 class App extends Component {
   render() {
@@ -10,18 +10,18 @@ class App extends Component {
           defaultTitle="Redux real-world example"
           titleTemplate="%s - Redux real-world example"
           meta={[
-            {"name": "description", "content": "A boilerplate doing universal/isomorphic rendering with Redux + React-router + Express"},
+            { name: 'description', content: 'A boilerplate doing universal/isomorphic rendering with Redux + React-router + Express' }
           ]}
-          htmlAttributes={{"lang": "en"}}
+          htmlAttributes={{ lang: 'en' }}
         />
-        {this.props.children}
+        { this.props.children }
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return {}
+  return {};
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

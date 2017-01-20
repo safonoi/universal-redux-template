@@ -5,7 +5,7 @@ import { mount } from 'enzyme'
 import { browserHistory } from 'react-router'
 
 describe('Container::Question', function(){
-  let props
+  let props;
 
   function renderDoc () {
     return mount(<Question {...props}/>)
@@ -25,14 +25,14 @@ describe('Container::Question', function(){
         }
       })
     }
-  })
+  });
 
   it('fetches question details on mounted', function(){
-    let doc = renderDoc()
+    let doc = renderDoc();
     expect(props.loadQuestionDetail).to.have.been.calledWith({
       id: props.params.id,
       history: browserHistory
     })
   })
 
-})
+});

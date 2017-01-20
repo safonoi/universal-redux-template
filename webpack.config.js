@@ -1,14 +1,14 @@
-var path = require('path')
-var webpack = require('webpack')
-var AssetsPlugin = require('assets-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 
-var DEBUG = !(process.env.NODE_ENV === 'production')
-var env = {
+const DEBUG = !(process.env.NODE_ENV === 'production');
+const env = {
   NODE_ENV: process.env.NODE_ENV,
   API_BASE_URL: process.env.API_BASE_URL
-}
+};
 
-var config = {
+const config = {
   devtool: DEBUG ? 'cheap-module-eval-source-map' : false,
   entry: {
     app: './app/app',
@@ -24,59 +24,56 @@ var config = {
     ]
   },
   resolve: {
-    root: [ path.join(__dirname, 'app') ]
+    root: [path.join(__dirname, 'app')],
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(env)
+      'process.env': JSON.stringify(env),
     })
   ],
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        include: __dirname
-      }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: /node_modules/,
+      include: __dirname,
+    }]
   }
-}
-
+};
 
 if (DEBUG) {
   config.entry.dev = [
     'webpack-dev-server/client?http://localhost:3001',
-    'webpack/hot/only-dev-server',
-  ]
+    'webpack/hot/only-dev-server'
+  ];
 
   config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filname: 'vendor.js'
+      filename: 'vendor.js',
     })
-  ])
-  config.output.publicPath = 'http://localhost:3001/static/'
+  ]);
+  config.output.publicPath = 'http://localhost:3001/static/';
   config.module.loaders[0].query = {
-    "env": {
-      "development": {
-        "presets": ["react-hmre"]
+    env: {
+      development: {
+        presets: ['react-hmre'],
       }
     }
-  }
+  };
 } else {
   config.plugins = config.plugins.concat([
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filname: '[name].[chunkhash].js'
+      filename: '[name].[chunkhash].js',
     }),
-    new webpack.optimize.UglifyJsPlugin(),
-  ])
+    new webpack.optimize.UglifyJsPlugin()
+  ]);
 }
 
-module.exports = config
+module.exports = config;
